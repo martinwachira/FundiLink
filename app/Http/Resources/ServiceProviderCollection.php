@@ -14,6 +14,14 @@ class ServiceProviderCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'providerName' => $this->providerName,
+            'description' => $this->description,
+            'phone' => $this->phone,
+            'address' => $this->phone,
+            'location' => $this->location
+        ];
     }
 }

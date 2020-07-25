@@ -14,6 +14,15 @@ class EmployeeCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'employeeName' => $this->employeeName,
+            'description' => $this->description,
+            'designation' => $this->designation,
+            'phone' => $this->phone,
+            'address' => $this->phone,
+            'location' => $this->location
+        ];
     }
 }
