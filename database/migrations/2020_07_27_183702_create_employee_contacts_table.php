@@ -15,6 +15,11 @@ class CreateEmployeeContactsTable extends Migration
     {
         Schema::create('employee_contacts', function (Blueprint $table) {
             $table->id();
+
+            // foreign key on employee's table
+            $table->integer('employeeId')->unsigned();
+            $table->foreign('employeeId')->references('id')->on('employees');
+
             $table->integer('phone');
             $table->string('address');
             $table->string('location');

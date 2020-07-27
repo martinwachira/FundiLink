@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class SProviderContact extends Model
 {
-    //
+    protected $guarded = ['id'];
+
+    public function SProviderContact()
+    {
+        return $this->belongsTo('App\Employee', 'employeeId', 'id');
+    }
 }

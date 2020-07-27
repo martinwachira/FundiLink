@@ -15,6 +15,11 @@ class CreateSProviderContactsTable extends Migration
     {
         Schema::create('s_provider_contacts', function (Blueprint $table) {
             $table->id();
+            
+            // foreign key on employee's table
+            $table->integer('providerId')->unsigned();
+            $table->foreign('providerId')->references('id')->on('service_providers');
+
             $table->integer('phone');
             $table->string('address');
             $table->string('location');
