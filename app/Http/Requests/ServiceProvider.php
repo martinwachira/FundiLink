@@ -25,7 +25,6 @@ class ServiceProvider extends FormRequest
     {
         return [
             'providerName' => 'required|min:6',
-            'phone' => 'required'
         ];
     }
 }

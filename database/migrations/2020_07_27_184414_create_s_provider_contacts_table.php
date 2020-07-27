@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServiceProvidersTable extends Migration
+class CreateSProviderContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateServiceProvidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_providers', function (Blueprint $table) {
+        Schema::create('s_provider_contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('providerName');
-            $table->longText('description');
+            $table->integer('phone');
+            $table->string('address');
+            $table->string('location');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateServiceProvidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_providers');
+        Schema::dropIfExists('s_provider_contacts');
     }
 }

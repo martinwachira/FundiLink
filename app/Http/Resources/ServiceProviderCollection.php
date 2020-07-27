@@ -18,10 +18,7 @@ class ServiceProviderCollection extends ResourceCollection
         return [
             'id' => $this->id,
             'providerName' => $this->providerName,
-            'description' => $this->description,
-            'phone' => $this->phone,
-            'address' => $this->phone,
-            'location' => $this->location
+            'description' => $this->description
         ];
     }
 }

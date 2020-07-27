@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class EmployeeCollection extends ResourceCollection
+class SProviderContactCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -16,10 +16,9 @@ class EmployeeCollection extends ResourceCollection
     {
         // return parent::toArray($request);
         return [
-            'id' => $this->id,
-            'employeeName' => $this->employeeName,
-            'description' => $this->description,
-            'designation' => $this->designation
+            'phone' => $this->phone,
+            'address' => $this->phone,
+            'location' => $this->location
         ];
     }
 }
