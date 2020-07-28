@@ -18,6 +18,7 @@ class EmployeeCollection extends ResourceCollection
         return [
             'id' => $this->id,
             'employeeName' => $this->employeeName,
+            'password' => $this->password,
             'description' => $this->description,
             'designation' => $this->designation
         ];

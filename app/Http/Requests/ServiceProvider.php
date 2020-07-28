@@ -25,6 +25,7 @@ class ServiceProvider extends FormRequest
     {
         return [
             'providerName' => 'required|min:6',
+            'password' => 'required|min:4'
         ];
     }
 }
