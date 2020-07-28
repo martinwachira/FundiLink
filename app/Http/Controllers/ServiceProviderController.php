@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\EmployeeCollection;
 
-class Employee extends Controller
+class ServiceProviderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,12 +32,9 @@ class Employee extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, EmployeeCollection $empCollection)
+    public function store(Request $request)
     {
-        $data= $request->all();
-        $empCollection -> fill($data)->save();
-
-        return ('Employee created, please update contact now');
+        //
     }
 
     /**
