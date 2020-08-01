@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Resources\EmployeeCollection;
+
 use App\Employee;
+use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
@@ -35,12 +35,18 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, EmployeeCollection $empCollection)
+    public function store(Request $request)
     {
-        $data= $request->all();
-        $empCollection -> fill($data)->save();
+        $newEmployee = new Employee();
+        $newEmployee->employeeName = $request->employeeName;
+        $newEmployee->password = $request->password;
+        $newEmployee->description = $request->description;
+        $newEmployee->designation = $request->designation;
 
-        return ('Employee created, please update contact now');
+        $newEmployee -> save();
+        return response('Employee added successfully', 200);
+        
+        // return ('Employee created, please update contact now');
     }
 
     /**
