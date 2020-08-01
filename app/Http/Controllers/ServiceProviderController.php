@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ServiceProvider;
 
 class ServiceProviderController extends Controller
 {
@@ -13,7 +14,8 @@ class ServiceProviderController extends Controller
      */
     public function index()
     {
-        //
+        $sprovider = ServiceProvider::all();
+        return response()->json($sprovider);
     }
 
     /**
@@ -34,7 +36,13 @@ class ServiceProviderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newProvider = new ServiceProvider();
+        $newProvider->providerName = $request->providerName;
+        $newProvider->password = $request->password;
+        $newProvider->description = $request->description;
+
+        $newProvider -> save();
+        return response('Service requester added successfully', 200);
     }
 
     /**

@@ -25,9 +25,7 @@ class EmployeeReq extends FormRequest
     {
         return [
             'employeeName' => 'required|min:6',
-            'password' => 'required|min:4',
-            'description' => 'required|min:20',
-            'designation' => 'required'            
+            'password' => 'required|min:4'           
         ];
     }
 }
