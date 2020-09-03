@@ -10,6 +10,6 @@ class EmployeeContact extends Model
 
     public function EmployeeContact()
     {
-        return $this->belongsTo('App\ServiceProvider', 'providerId', 'id');
+        return $this->belongsTo('App\Employee', 'employeeId', 'id');
     }
 }

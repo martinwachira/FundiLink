@@ -37,7 +37,13 @@ class SProviderContacts extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $providerContacts = new SProviderContact();
+        $providerContacts->phone = $request->phone;
+        $providerContacts->address = $request->address;
+        $providerContacts->location = $request->location;
+
+        $providerContacts -> save();
+        return response('Service Provider Contacts Updated', 200);
     }
 
     /**
