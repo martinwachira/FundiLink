@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Contact;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use\App\EmployeeContact;
 
 class EmployerContacts extends Controller
 {
@@ -14,7 +15,8 @@ class EmployerContacts extends Controller
      */
     public function index()
     {
-        //
+        $empContact = EmployeeContact::all();
+        return response()->json($empContact);
     }
 
     /**
@@ -35,7 +37,13 @@ class EmployerContacts extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $empContacts = new EmployeeContact();
+        $empContacts->phone = $request->phone;
+        $empContacts->address = $request->address;
+        $empContacts->location = $request->location;
+
+        $empContacts -> save();
+        return response('Employee Contacts Updated', 200);
     }
 
     /**

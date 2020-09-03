@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Contact;
 
 use App\Http\Controllers\Controller;
+use App\SProviderContact;
 use Illuminate\Http\Request;
 
 class SProviderContacts extends Controller
@@ -14,7 +15,8 @@ class SProviderContacts extends Controller
      */
     public function index()
     {
-        //
+        $providerContact = SProviderContact::all();
+        return response()->json($providerContact);
     }
 
     /**
