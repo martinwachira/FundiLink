@@ -176,7 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // ratings provider
-        willvincent\Rateable\RateableServiceProvider::class,
+        // willvincent\Rateable\RateableServiceProvider::class,
 
     ],
 
