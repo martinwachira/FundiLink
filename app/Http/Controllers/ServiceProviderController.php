@@ -12,6 +12,8 @@ class ServiceProviderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $status = 200;
+    
     public function index()
     {
         $sprovider = ServiceProvider::all();
@@ -36,13 +38,37 @@ class ServiceProviderController extends Controller
      */
     public function store(Request $request)
     {
-        $newProvider = new ServiceProvider();
-        $newProvider->providerName = $request->providerName;
-        $newProvider->password = $request->password;
-        $newProvider->description = $request->description;
+        // $newProvider = new ServiceProvider();
+        // $newProvider->providerName = $request->providerName;
+        // $newProvider->email = $request->email;
+        // $newProvider->password = $request->password;
+        // $newProvider->description = $request->description;
 
-        $newProvider -> save();
-        return response('Service requester added successfully', 200);
+        // $newProvider -> save();
+        // return response('Service requester added successfully', 200);
+
+        $employerData = array(
+            "providerName" => $request->providerName,
+            "email" => $request->email,
+            "password" => md5($request->password),
+            "description" => $request->description
+        );
+
+        $employer = ServiceProvider::where("email", $request->email)->first();
+
+        if (!is_null($employer)) {
+            return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! email already registered"]);
+        }
+
+        $user = ServiceProvider::create($employerData);
+
+        if(!is_null($user)) {
+            return response()->json(["status" => $this->status, "success" => true, "message" => "Account created successfully", "data" => $user]);
+        }
+
+        else {
+            return response()->json(["status" => "failed", "success" => false, "message" => "Registration failed"]);
+        }
     }
 
     /**

@@ -17,6 +17,7 @@ class EmployeeCollection extends ResourceCollection
         // return parent::toArray($request);
         return [
             'employeeName' => $this->employeeName,
+            'email' => $this->email,
             'password' => $this->password,
             'description' => $this->description,
             'designation' => $this->designation

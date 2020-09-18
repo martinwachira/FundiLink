@@ -18,6 +18,7 @@ class ServiceProviderCollection extends ResourceCollection
         return [
             'id' => $this->id,
             'providerName' => $this->providerName,
+            'email' => $this->email,
             'password' => $this->password,
             'description' => $this->description
         ];

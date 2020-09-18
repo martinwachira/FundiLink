@@ -13,6 +13,8 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $status = 200;
+
     public function index()
     {
         $emp = Employee::all();
@@ -37,15 +39,40 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $newEmployee = new Employee();
-        $newEmployee->employeeName = $request->employeeName;
-        $newEmployee->password = $request->password;
-        $newEmployee->description = $request->description;
-        $newEmployee->designation = $request->designation;
+        // $newEmployee = new Employee();
+        // $newEmployee->employeeName = $request->employeeName;
+        // $newEmployee->email = $request->email;
+        // $newEmployee->password = $request->password;
+        // $newEmployee->description = $request->description;
+        // $newEmployee->designation = $request->designation;
 
-        $newEmployee -> save();
-        return response('Employee added successfully', 200);
-        
+        $employeeData = array(
+            "employeeName" => $request->employeeName,
+            "email" => $request->email,
+            "password" => md5($request->password),
+            "description" => $request->description,
+            "designation" => $request->designation
+        );
+
+        $user_status = Employee::where("email", $request->email)->first();
+
+        if (!is_null($user_status)) {
+            return response()->json(["status" => "failed", "success" => false, "message" => "Sorry! email is already registered"]);
+        }
+
+        $user = Employee::create($employeeData);
+
+        if(!is_null($user)) {
+            return response()->json(["status" => $this->status, "success" => true, "message" => "Account created successfully", "data" => $user]);
+        }
+
+        else {
+            return response()->json(["status" => "failed", "success" => false, "message" => "Registration failed"]);
+        }
+
+        // $newEmployee->save();
+        // return response('Employee added successfully', 200);
+
         // return ('Employee created, please update contact now');
     }
 
