@@ -13,7 +13,7 @@ class ServiceProviderController extends Controller
      * @return \Illuminate\Http\Response
      */
     private $status = 200;
-    
+
     public function index()
     {
         $sprovider = ServiceProvider::all();
@@ -57,7 +57,7 @@ class ServiceProviderController extends Controller
         $employer = ServiceProvider::where("email", $request->email)->first();
 
         if (!is_null($employer)) {
-            return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! email already registered"]);
+            return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! email is already registered"]);
         }
 
         $user = ServiceProvider::create($employerData);
