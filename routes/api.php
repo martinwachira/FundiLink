@@ -22,4 +22,4 @@ Route::apiResource('/employee', 'EmployeeController');
 Route::apiResource('/requester', 'ServiceProviderController');
 Route::apiResource('/employer-contact', 'Contact\EmployerContacts');
 Route::apiResource('/provider-contact', 'Contact\SProviderContacts');
-// Route::apiResource('/empLogin', 'EmployeeController@loginEmp');
+Route::post('/empLogin', 'EmployeeController@loginEmp');

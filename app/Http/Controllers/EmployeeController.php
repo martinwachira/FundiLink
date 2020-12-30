@@ -25,16 +25,31 @@ class EmployeeController extends Controller
 
     public function loginEmp(Request $req)
     {
+        $emp = Employee::all();
+
+        $this->validate($req, [
+                'email' => ['required', 'string', 'email'],
+                'password' => ['required'],
+            ]);
+
+        if(Auth::attempt(['email'=>$req->email,'password'=>$req->password])){
+            return 'logged in';
+        }
+        return 'error';
+
+
+
         // $credentials = [
         //     'email' => $req->email,
         //     'password' => $req->password
         // ];
  
         // if (Auth::attempt($credentials)) {
-        //     $token = auth()->user()->createToken('TutsForWeb')->accessToken;
+        //     // $token = auth()->user()->createToken('TutsForWeb')->accessToken;
+        //     $token = $emp->createToken('FundiLink');
         //     return response()->json(['token' => $token], 200);
         // } else {
-        //     return response()->json(['error' => 'UnAuthorised'], 401);
+        //     return response()->json(['error' => 'Unauthorised'], 401);
         // }
 
         // $this->validate($req, [
@@ -49,7 +64,7 @@ class EmployeeController extends Controller
         //         ]
         //         ], 422);
         // }
-        // $emp = $req->Employee();
+        // $emp = $req->Employee::all();
         // $tokenResult = $emp->createToken('Personal Access Token');
         // $token = $tokenResult->token;
         // if ($req->remember_me){
@@ -107,8 +122,12 @@ class EmployeeController extends Controller
 
         $user = Employee::create($employeeData);
 
+        // $token = $user->createToken('FundiLink')->accessToken;
+
         if(!is_null($user)) {
+            // return response()->json(['token'=>$token, "status" => $this->status, "success" => true, "message" => "Account created successfully", "data" => $user], 200);
             return response()->json(["status" => $this->status, "success" => true, "message" => "Account created successfully", "data" => $user]);
+
         }
 
         else {
