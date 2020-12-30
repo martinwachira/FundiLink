@@ -24,8 +24,8 @@ class EmployeeReq extends FormRequest
     public function rules()
     {
         return [
-            'employeeName' => 'required|min:6',
-            'password' => 'required|min:4'           
+            'employeeName' => 'required|min:3',
+            'password' => 'required|min:3'           
         ];
     }
 }

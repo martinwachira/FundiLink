@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('/employee', 'EmployeeController');
 Route::apiResource('/requester', 'ServiceProviderController');
 Route::apiResource('/employer-contact', 'Contact\EmployerContacts');
-ROute::apiResource('/provider-contact', 'Contact\SProviderContacts');
+Route::apiResource('/provider-contact', 'Contact\SProviderContacts');
+// Route::apiResource('/empLogin', 'EmployeeController@loginEmp');

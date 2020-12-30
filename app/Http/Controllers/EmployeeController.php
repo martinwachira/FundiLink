@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class EmployeeController extends Controller
 {
@@ -19,6 +21,49 @@ class EmployeeController extends Controller
     {
         $emp = Employee::all();
         return response()->json($emp);
+    }
+
+    public function loginEmp(Request $req)
+    {
+        // $credentials = [
+        //     'email' => $req->email,
+        //     'password' => $req->password
+        // ];
+ 
+        // if (Auth::attempt($credentials)) {
+        //     $token = auth()->user()->createToken('TutsForWeb')->accessToken;
+        //     return response()->json(['token' => $token], 200);
+        // } else {
+        //     return response()->json(['error' => 'UnAuthorised'], 401);
+        // }
+
+        // $this->validate($req, [
+        //     'email' => ['required', 'string', 'email'],
+        //     'password' => ['required'],
+        // ]);
+        // $cred = request(['email','password']);
+        // if(!Auth::attempt($cred)){
+        //     return response()->json([
+        //         'errors' => [
+        //             'email'=>['error']
+        //         ]
+        //         ], 422);
+        // }
+        // $emp = $req->Employee();
+        // $tokenResult = $emp->createToken('Personal Access Token');
+        // $token = $tokenResult->token;
+        // if ($req->remember_me){
+        //     $token->expires_at = Carbon::now()->addWeeks(1);
+        // }
+        // $token->save();
+        // return response()->json([
+        //     'data' => $emp,
+        //     'access_token' => $tokenResult->accessToken,
+        //     'token_type' => 'Bearer',
+        //     'expires_at' => Carbon::parse(
+        //         $tokenResult->token->expires_at
+        //     )->toDateTimeString()
+        // ]);
     }
 
     /**
@@ -49,7 +94,7 @@ class EmployeeController extends Controller
         $employeeData = array(
             "employeeName" => $request->employeeName,
             "email" => $request->email,
-            "password" => md5($request->password),
+            "password" => bcrypt($request->password),
             "description" => $request->description,
             "designation" => $request->designation
         );

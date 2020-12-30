@@ -50,7 +50,7 @@ class ServiceProviderController extends Controller
         $employerData = array(
             "providerName" => $request->providerName,
             "email" => $request->email,
-            "password" => md5($request->password),
+            "password" => bcrypt($request->password),
             "description" => $request->description
         );
 
